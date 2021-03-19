@@ -127,7 +127,7 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.jfree.chart.ChartMouseEvent;
 import org.jfree.chart.ChartMouseListener;
 import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.EntityCollection;
@@ -804,7 +804,7 @@ public class ChartComposite extends Composite implements ChartChangeListener,
                 }
             }
             //TODO replace getSize by getBounds ?
-            ChartUtilities.saveChartAsPNG(new File(filename), this.chart,
+            ChartUtils.saveChartAsPNG(new File(filename), this.chart,
                     this.canvas.getSize().x, this.canvas.getSize().y);
         }
     }
