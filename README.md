@@ -20,3 +20,12 @@ License
 JFreeChart-SWT is free software under the terms of the GNU Lesser General Public License (LGPL) version 2.1 or later.
 
 Please note that JFreeChart-SWT is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. Please refer to the license for details.
+
+Change History
+--------------
+
+Version 1.1.0 (not yet released)
+- update JFreeChart dependency to version 1.5.3
+
+Version 1.0 (20 February 2016)
+- initial release as a standalone project (previously included with JFreeChart SWT support).
