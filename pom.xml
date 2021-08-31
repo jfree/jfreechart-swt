@@ -24,25 +24,24 @@
  
     <dependencies>
         <dependency>
-	    <groupId>org.jfree</groupId>
-	    <artifactId>jfreechart</artifactId>
-	    <version>1.5.3</version>
+	        <groupId>org.jfree</groupId>
+	        <artifactId>jfreechart</artifactId>
+	        <version>1.5.3</version>
         </dependency>
         <dependency>
-	    <groupId>org.jfree</groupId>
-	    <artifactId>swtgraphics2d</artifactId>
-	    <version>1.0</version>
+	        <groupId>org.jfree</groupId>
+	        <artifactId>swtgraphics2d</artifactId>
+	        <version>1.1.0</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-	    <plugin>
+	        <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.1.0</version>
             </plugin>
-	    
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
