@@ -2,7 +2,7 @@
  * JFreeChart-SWT : SWT extensions for JFreeChart
  * ==============================================
  *
- * (C) Copyright 2000-2016, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2021, by Object Refinery Limited and Contributors.
  *
  * Project Info:  https://github.com/jfree/jfreechart-swt
  *
@@ -27,15 +27,10 @@
  * ---------------------
  * SWTTimeSeriesDemo.java
  * ---------------------
- * (C) Copyright 2006-2016, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2006-2021, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   Henry Proudhon (henry.proudhon AT ensmp.fr);
- *
- * Changes
- * -------
- * 30-Jan-2007 : New class derived from TimeSeriesDemo.java (HP);
- * 19-Feb-2016 : Moved out of JFreeChart project (DG);
  * 
  */
 
@@ -59,7 +54,7 @@ import org.jfree.data.time.Month;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
-import org.jfree.ui.RectangleInsets;
+import org.jfree.chart.ui.RectangleInsets;
 
 /**
  * An example of a time series chart.  For the most part, default settings are 
@@ -100,8 +95,8 @@ public class SWTTimeSeriesDemo1 {
         XYItemRenderer r = plot.getRenderer();
         if (r instanceof XYLineAndShapeRenderer) {
             XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) r;
-            renderer.setBaseShapesVisible(true);
-            renderer.setBaseShapesFilled(true);
+            renderer.setDefaultShapesVisible(true);
+            renderer.setDefaultShapesVisible(true);
         }
         
         DateAxis axis = (DateAxis) plot.getDomainAxis();

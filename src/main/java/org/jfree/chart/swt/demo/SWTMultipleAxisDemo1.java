@@ -2,7 +2,7 @@
  * JFreeChart-SWT : SWT extensions for JFreeChart
  * ==============================================
  *
- * (C) Copyright 2000-2016, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2021, by Object Refinery Limited and Contributors.
  *
  * Project Info:  https://github.com/jfree/jfreechart-swt
  *
@@ -27,15 +27,10 @@
  * -------------------------
  * SWTMultipleAxisDemo1.java
  * -------------------------
- * (C) Copyright 2006-2016, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2006-2021, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   Henry Proudhon;
- *
- * Changes
- * -------
- * 23-Aug-2006 : New class (HP);
- * 19-Feb-2016 : Moved out of JFreeChart project (DG);
  *
  */
 
@@ -65,7 +60,7 @@ import org.jfree.data.time.RegularTimePeriod;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
-import org.jfree.ui.RectangleInsets;
+import org.jfree.chart.ui.RectangleInsets;
 
 /**
  * This demo shows a time series chart that has multiple range axes.
@@ -88,8 +83,7 @@ public class SWTMultipleAxisDemo1 {
             dataset1,
             true,
             true,
-            false
-        );
+            false);
 
         chart.setBackgroundPaint(Color.white);
         chart.setBorderVisible(true);

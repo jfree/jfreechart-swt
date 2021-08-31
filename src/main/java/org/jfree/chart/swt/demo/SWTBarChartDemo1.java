@@ -2,7 +2,7 @@
  * JFreeChart-SWT : SWT extensions for JFreeChart
  * ==============================================
  *
- * (C) Copyright 2000-2016, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2021, by Object Refinery Limited and Contributors.
  *
  * Project Info:  https://github.com/jfree/jfreechart-swt
  *
@@ -27,15 +27,10 @@
  * ---------------------
  * SWTBarChartDemo1.java
  * ---------------------
- * (C) Copyright 2006-2016, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2006-2021, by Object Refinery Limited and Contributors.
  *
  * Original Author:  David Gilbert (for Object Refinery Limited);
  * Contributor(s):   Henry Proudhon (henry.proudhon AT ensmp.fr).
- *
- * Changes
- * -------
- * 23-Aug-2006 : New class (DG);
- * 19-Feb-2016 : Moved out of JFreeChart project (DG);
  *
  */
 
