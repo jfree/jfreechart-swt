@@ -1,13 +1,20 @@
 JFreeChart-SWT
 ==============
 
-Version 1.0 - 20 February 2016.
+Version 1.1.0 - not yet released.
 
-(C)opyright 2006-2016, by Object Refinery Limited and Contributors. All rights reserved.
+(C)opyright 2006-2021, by Object Refinery Limited and Contributors. All rights reserved.
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jfree/jfreechart-swt/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.jfree/jfreechart-swt)
 
 Overview
 --------
-SWT extensions for JFreeChart. This code was originally developed as part of the JFreeChart project (http://www.jfree.org/jfreechart). It is now a standalone project.
+**JFreeChart-SWT** is a library that provides extensions for [JFreeChart](https://github.com/jfree/jfreechart) that allows charts
+to be rendered in SWT applications. This code was originally developed as part of the JFreeChart project. It is now a standalone project.
+
+Using JFreeChart-SWT
+--------------------
+To include JFreeChart-SWT in your own application, add the following dependency to your build tool:
 
     <dependency>
       <groupId>org.jfree</groupId>
@@ -25,7 +32,8 @@ Change History
 --------------
 
 Version 1.1.0 (not yet released)
-- update JFreeChart dependency to version 1.5.3
+- update [JFreeChart](https://github.com/jfree/jfreechart) dependency to version 1.5.3
+- update [SWTGraphics2D](https://github.com/jfree/swtgraphics2d) dependency to version 1.1.0
 
 Version 1.0 (20 February 2016)
 - initial release as a standalone project (previously included with JFreeChart SWT support).
