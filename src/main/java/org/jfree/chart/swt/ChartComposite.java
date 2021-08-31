@@ -2,7 +2,7 @@
  * JFreeChart-SWT : SWT extensions for JFreeChart
  * ==============================================
  *
- * (C) Copyright 2000-2016, by Object Refinery Limited and Contributors.
+ * (C) Copyright 2000-2021, by Object Refinery Limited and Contributors.
  *
  * Project Info:  https://github.com/jfree/jfreechart-swt
  *
@@ -27,7 +27,7 @@
  * -------------------
  * ChartComposite.java
  * -------------------
- * (C) Copyright 2006-2016, by Henry Proudhon and Contributors.
+ * (C) Copyright 2006-2021, by Henry Proudhon and Contributors.
  *
  * Original Author:  Henry Proudhon (henry.proudhon AT ensmp.fr);
  * Contributor(s):   David Gilbert (for Object Refinery Limited);
@@ -37,84 +37,12 @@
  *                   Jonas Rüttimann (bug fix 2963199);
  *                   Bernard Sarter;
  *
- * Changes
- * -------
- * 19-Jun-2006 : New class (HP);
- * 06-Nov-2006 : Added accessor methods for zoomInFactor and zoomOutFactor (DG);
- * 28-Nov-2006 : Added support for trace lines (HP);
- * 30-Nov-2006 : Improved zoom box handling (HP);
- * 06-Dec-2006 : Added (simplified) tool tip support (HP);
- * 11-Dec-2006 : Fixed popup menu location by fgiust, bug 1612770 (HP);
- * 31-Jan-2007 : Fixed some issues with the trace lines, fixed cross hair not
- *               being drawn, added getter and setter methods for the trace
- *               lines (HP);
- * 07-Apr-2007 : Changed this.redraw() into canvas.redraw() to fix redraw
- *               problems (HP);
- * 19-May-2007 : Small fix in paintControl to check for null charts, bug
- *               1719260 (HP);
- * 19-May-2007 : Corrected bug with scaling when the drawing region is larger
- *               than maximum draw width/height (HP);
- * 23-May-2007 : Added some dispose call to free SWT resources, patch sent by
- *               Cédric Chabanois (CC);
- * 06-Jun-2007 : Fixed minor issues with tooltips. bug reported and fix
- *               proposed by Christoph Beck, bug 1726404 (HP);
- * 22-Oct-2007 : Added addChartMouseListener and removeChartMouseListener
- *               methods as suggested by Christoph Beck, bug 1742002 (HP);
- * 22-Oct-2007 : Fixed bug in zooming with multiple plots (HP);
- * 22-Oct-2007 : Check for null zoom point when restoring auto range and domain
- *               bounds (HP);
- * 22-Oct-2007 : Pass mouse moved events to listening ChartMouseListeners (HP);
- * 22-Oct-2007 : Refactored class, now implements PaintListener, MouseListener,
- *               MouseMoveListener. Made the chart field be private again and
- *               added new method addSWTListener to allow custom behavior.
- * 14-Nov-2007 : Create canvas with SWT.DOUBLE_BUFFER, added
- *               getChartRenderingInfo(), is/setDomainZoomable() and
- *               is/setRangeZoomable() as per feature request (DG);
- * 11-Jul-2008 : Bug 1994355 fix (DG);
- * 18-Dec-2008 : Use ResourceBundleWrapper - see patch 1607918 by
- *               Jess Thrysoee (DG);
- * 08-Jan-2012 : Dispose popup-menu (patch 3463807 by Sebastiao Correia) (DG)
- * 05-Jul-2012 : Fix SWT print (bug 2963199 by Jonas Rüttimann);
- * 26-Jul-2013 : Fix memory leak (patch in forum from Bernard Sarter) (DG);
- * 19-Feb-2016 : Move out of JFreeChart project (DG);
- *
  */
 
 package org.jfree.chart.swt;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import static java.awt.print.Printable.NO_SUCH_PAGE;
-import static java.awt.print.Printable.PAGE_EXISTS;
-import java.awt.print.PrinterException;
-import java.io.File;
-import java.io.IOException;
-import java.util.EventListener;
-import java.util.ResourceBundle;
-
-import javax.swing.event.EventListenerList;
-
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlListener;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.events.FocusListener;
-import org.eclipse.swt.events.HelpListener;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
-import org.eclipse.swt.events.MouseMoveListener;
-import org.eclipse.swt.events.MouseTrackListener;
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.events.TraverseListener;
+import org.eclipse.swt.events.*;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
@@ -124,26 +52,30 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.jfree.chart.ChartMouseEvent;
-import org.jfree.chart.ChartMouseListener;
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
+import org.jfree.chart.*;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.EntityCollection;
 import org.jfree.chart.event.ChartChangeEvent;
 import org.jfree.chart.event.ChartChangeListener;
 import org.jfree.chart.event.ChartProgressEvent;
 import org.jfree.chart.event.ChartProgressListener;
-import org.jfree.chart.plot.Plot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.PlotRenderingInfo;
-import org.jfree.chart.plot.ValueAxisPlot;
-import org.jfree.chart.plot.Zoomable;
+import org.jfree.chart.plot.*;
 import org.jfree.chart.swt.editor.SWTChartEditor;
 import org.jfree.chart.util.ResourceBundleWrapper;
 import org.jfree.swt.SWTGraphics2D;
 import org.jfree.swt.SWTUtils;
+
+import javax.swing.event.EventListenerList;
+import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.io.File;
+import java.io.IOException;
+import java.util.EventListener;
+import java.util.ResourceBundle;
 
 /**
  * A SWT GUI composite for displaying a {@link JFreeChart} object.
