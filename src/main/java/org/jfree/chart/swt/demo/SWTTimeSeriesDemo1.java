@@ -173,6 +173,7 @@ public class SWTTimeSeriesDemo1 {
         shell.setLayout(new FillLayout());
         shell.setText("Time series demo for jfreechart running with SWT");
         ChartComposite frame = new ChartComposite(shell, SWT.NONE, chart, true);
+        frame.setFillZoomRectangle(true);
         frame.setDisplayToolTips(true);
         frame.setHorizontalAxisTrace(false);
         frame.setVerticalAxisTrace(false);
