@@ -233,7 +233,7 @@ public class ChartComposite extends Composite implements ChartChangeListener,
     private transient Rectangle zoomRectangle = null;
 
     /** Controls if the zoom rectangle is drawn as an outline or filled. */
-    //TODO private boolean fillZoomRectangle = true;
+    private boolean fillZoomRectangle = true;
 
     /** The minimum distance required to drag the mouse to trigger a zoom. */
     private int zoomTriggerDistance;
@@ -641,6 +641,26 @@ public class ChartComposite extends Composite implements ChartChangeListener,
         else {
             this.rangeZoomable = false;
         }
+    }
+
+    /**
+     * Returns the flag that controls whether or not the zoom rectangle is
+     * filled when drawn.
+     *
+     * @return A boolean.
+     */
+    public boolean getFillZoomRectangle() {
+        return this.fillZoomRectangle;
+    }
+
+    /**
+     * A flag that controls how the zoom rectangle is drawn.
+     *
+     * @param flag  {@code true} instructs to fill the rectangle on
+     *              zoom, otherwise it will be outlined.
+     */
+    public void setFillZoomRectangle(boolean flag) {
+        this.fillZoomRectangle = flag;
     }
 
     /**
@@ -1817,7 +1837,13 @@ public class ChartComposite extends Composite implements ChartChangeListener,
         this.verticalTraceLineX = 0;
         this.horizontalTraceLineY = 0;
         if (this.zoomRectangle != null) {
+            e.gc.setForeground(getDisplay().getSystemColor(SWT.COLOR_BLUE));
             e.gc.drawRectangle(this.zoomRectangle);
+            if(this.fillZoomRectangle) {
+                e.gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_BLUE));
+                e.gc.setAlpha(63);
+                e.gc.fillRectangle(this.zoomRectangle);
+            }
         }
         sg2.dispose();
     }
