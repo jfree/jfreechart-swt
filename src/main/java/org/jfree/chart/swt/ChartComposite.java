@@ -855,6 +855,11 @@ public class ChartComposite extends Composite implements ChartChangeListener,
      * @param selection  the selected region.
      */
     public void zoom(Rectangle selection) {
+    	
+        selection.x *= this.scaleX;
+        selection.y *= this.scaleY;
+        selection.width *= this.scaleX;
+        selection.height *= this.scaleY;
 
         // get the origin of the zoom selection in the Java2D space used for
         // drawing the chart (that is, before any scaling to fit the panel)
@@ -1771,15 +1776,19 @@ public class ChartComposite extends Composite implements ChartChangeListener,
                 }
                 SWTGraphics2D sg2d = new SWTGraphics2D(gci);
                 if (scale) {
-                    sg2d.scale(this.scaleX, this.scaleY);
                     this.chart.draw(sg2d, new Rectangle2D.Double(0, 0,
-                            drawWidth, drawHeight), getAnchor(), this.info);
+                            drawWidth * scaleX, drawHeight * scaleY), getAnchor(), this.info);
                 }
                 else {
                     this.chart.draw(sg2d, new Rectangle2D.Double(0, 0,
                             drawWidth, drawHeight), getAnchor(), this.info);
                 }
                 this.canvas.setData("double-buffer-image", this.chartBuffer);
+                if (this.zoomRectangle != null) {
+                	gci.setLineWidth(2);
+                    gci.drawRectangle(this.zoomRectangle);
+                }
+
                 sg2d.dispose();
                 gci.dispose();
                 this.refreshBuffer = false;
@@ -1800,6 +1809,10 @@ public class ChartComposite extends Composite implements ChartChangeListener,
             this.chart.draw(sg2, new Rectangle2D.Double(0, 0,
                     getBounds().width, getBounds().height), getAnchor(),
                     this.info);
+            if (this.zoomRectangle != null) {
+            	e.gc.setLineWidth(2);
+                e.gc.drawRectangle(this.zoomRectangle);
+            }
         }
         Rectangle area = getScreenDataArea();
         // TODO see if we need to apply some line color and style to the
@@ -1816,9 +1829,7 @@ public class ChartComposite extends Composite implements ChartChangeListener,
         }
         this.verticalTraceLineX = 0;
         this.horizontalTraceLineY = 0;
-        if (this.zoomRectangle != null) {
-            e.gc.drawRectangle(this.zoomRectangle);
-        }
+
         sg2.dispose();
     }
 
