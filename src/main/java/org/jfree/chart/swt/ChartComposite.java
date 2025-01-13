@@ -1845,4 +1845,34 @@ public class ChartComposite extends Composite implements ChartChangeListener,
         super.dispose();
     }
 
+    /**
+     * The mouse wheel handler.
+     */
+    private MouseWheelHandler mouseWheelHandler;
+
+    /**
+     * Returns {@code true} if the mouse wheel handler is enabled, and
+     * {@code false} otherwise.
+     *
+     * @return A boolean.
+     */
+    public boolean isMouseWheelEnabled() {
+        return this.mouseWheelHandler != null;
+    }
+
+    /**
+     * Enables or disables mouse wheel support for the panel.
+     *
+     * @param flag  a boolean.
+     */
+    public void setMouseWheelEnabled(boolean flag) {
+        if (flag && this.mouseWheelHandler == null) {
+            this.mouseWheelHandler = new MouseWheelHandler(this);
+        }
+        else if (!flag && this.mouseWheelHandler != null) {
+            this.removeMouseWheelListener(this.mouseWheelHandler);
+            this.mouseWheelHandler = null;
+        } 
+    }
+
 }
