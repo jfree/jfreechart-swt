@@ -3,7 +3,7 @@ JFreeChart-SWT
 
 Version 1.1.0 - not yet released.
 
-(C)opyright 2006-2021, by Object Refinery Limited and Contributors. All rights reserved.
+(C)opyright 2006-present, by David Gilbert and Contributors. All rights reserved.
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jfree/jfreechart-swt/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.jfree/jfreechart-swt)
 
@@ -32,7 +32,7 @@ Change History
 --------------
 
 Version 1.1.0 (not yet released)
-- update [JFreeChart](https://github.com/jfree/jfreechart) dependency to version 1.5.3
+- update [JFreeChart](https://github.com/jfree/jfreechart) dependency to version 1.5.6
 - update [SWTGraphics2D](https://github.com/jfree/swtgraphics2d) dependency to version 1.1.0
 
 Version 1.0 (20 February 2016)
