@@ -32,6 +32,7 @@ Change History
 --------------
 
 Version 1.1.0 (not yet released)
+- add `fillZoomRectangle` ([#4](https://github.com/jfree/jfreechart-swt/pull/4))
 - update [JFreeChart](https://github.com/jfree/jfreechart) dependency to version 1.5.6
 - update [SWTGraphics2D](https://github.com/jfree/swtgraphics2d) dependency to version 1.1.0
 
