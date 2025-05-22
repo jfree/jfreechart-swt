@@ -233,7 +233,10 @@ public class ChartComposite extends Composite implements ChartChangeListener,
     private transient Rectangle zoomRectangle = null;
 
     /** Controls if the zoom rectangle is drawn as an outline or filled. */
-    //TODO private boolean fillZoomRectangle = true;
+    private boolean fillZoomRectangle = true;
+
+    /** Color for the selection rectangle */
+    private org.eclipse.swt.graphics.Color selectionColor = getDisplay().getSystemColor(SWT.COLOR_BLUE);
 
     /** The minimum distance required to drag the mouse to trigger a zoom. */
     private int zoomTriggerDistance;
@@ -641,6 +644,44 @@ public class ChartComposite extends Composite implements ChartChangeListener,
         else {
             this.rangeZoomable = false;
         }
+    }
+
+    /**
+     * Returns the flag that controls whether or not the zoom rectangle is
+     * filled when drawn.
+     *
+     * @return A boolean.
+     */
+    public boolean getFillZoomRectangle() {
+        return this.fillZoomRectangle;
+    }
+
+    /**
+     * A flag that controls how the zoom rectangle is drawn.
+     *
+     * @param flag  {@code true} instructs to fill the rectangle on
+     *              zoom, otherwise it will be outlined.
+     */
+    public void setFillZoomRectangle(boolean flag) {
+        this.fillZoomRectangle = flag;
+    }
+
+    /**
+     * Returns the color used to draw the zoom rectangle
+     *
+     * @return Current selection color
+     */
+    public org.eclipse.swt.graphics.Color getSelectionColor () {
+        return this.selectionColor;
+    }
+
+    /**
+     * Changes the color used to draw the zoom rectangle
+     *
+     * @param color New selection color
+     */
+    public void setSelectionColor(org.eclipse.swt.graphics.Color color) {
+        this.selectionColor = color;
     }
 
     /**
@@ -1817,7 +1858,13 @@ public class ChartComposite extends Composite implements ChartChangeListener,
         this.verticalTraceLineX = 0;
         this.horizontalTraceLineY = 0;
         if (this.zoomRectangle != null) {
+            e.gc.setForeground(this.selectionColor);
             e.gc.drawRectangle(this.zoomRectangle);
+            if(this.fillZoomRectangle) {
+                e.gc.setBackground(this.selectionColor);
+                e.gc.setAlpha(63);
+                e.gc.fillRectangle(this.zoomRectangle);
+            }
         }
         sg2.dispose();
     }
